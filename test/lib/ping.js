@@ -159,7 +159,72 @@ describe('Pings', function() {
 
         })
 
-        describe('Handle', function() {
+        describe('Handle + respond', function() {
+
+            it('Sends expected data', function(done) {
+                var stanza = helper.getStanza('ping')
+                socket.on('xmpp.ping', function(data) {
+                    data.from.should.equal('capulet.lit')
+                    data.id.should.equal('s2c1')
+                    done()
+                })
+                ping.handle(stanza).should.be.true
+            })
+
+            it('Errors if missing \'id\' key', function(done) {
+                xmpp.once('stanza', function() {
+                    done('Unexpected outgoing stanza')
+                })
+                socket.once('xmpp.error.client', function(error) {
+                    error.type.should.equal('modify')
+                    error.condition.should.equal('client-error')
+                    error.description.should.equal('Missing \'id\' key')
+                    xmpp.removeAllListeners('stanza')
+                    done()
+                })
+                socket.send('xmpp.ping.pong', {})
+            })
+
+            it('Errors if missing \'to\' key', function(done) {
+                xmpp.once('stanza', function() {
+                    done('Unexpected outgoing stanza')
+                })
+                socket.once('xmpp.error.client', function(error) {
+                    error.type.should.equal('modify')
+                    error.condition.should.equal('client-error')
+                    error.description.should.equal('Missing \'to\' key')
+                    xmpp.removeAllListeners('stanza')
+                    done()
+                })
+                socket.send('xmpp.ping.pong', { id: 123 })
+            })
+
+            it('Errors via callback if provided', function(done) {
+                xmpp.once('stanza', function() {
+                    done('Unexpected outgoing stanza')
+                })
+                var callback = function(error, data) {
+                    error.type.should.equal('modify')
+                    error.condition.should.equal('client-error')
+                    error.description.should.equal('Missing \'to\' key')
+                    should.not.exist(data)
+                    xmpp.removeAllListeners('stanza')
+                    done()
+                }
+                socket.send('xmpp.ping.pong', { id: 123 }, callback)
+            })
+
+            it('Sends expected stanza', function(done) {
+                var request = { to: 'xmpp.org', id: '123' }
+                xmpp.once('stanza', function(stanza) {
+                    stanza.is('iq').should.be.true
+                    stanza.attrs.to.should.equal(request.to)
+                    stanza.attrs.type.should.equal('result')
+                    stanza.attrs.id.should.exist
+                    done()
+                })
+                socket.send('xmpp.ping.pong', request, function() {})
+            })
 
         })
     })
