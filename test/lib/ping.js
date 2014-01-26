@@ -4,6 +4,7 @@
 
 var Ping = require('../../index')
   , helper = require('../helper')
+  , ltx = require('ltx')
 
 var should = require('should')
 
@@ -135,6 +136,31 @@ describe('Pings', function() {
                 done()
             }
             socket.send('xmpp.ping', {}, callback)
+        })
+    })
+
+    describe('Incoming', function() {
+
+        describe('Handles', function() {
+
+            it('Does not handle non-IQ stanzas', function() {
+                ping.handles(ltx.parse('<message/>')).should.be.false
+            })
+
+            it('Does not handle packets with incorrect child element', function() {
+                var stanza = ltx.parse('<iq><not-ping/></iq>')
+                ping.handles(stanza).should.be.false
+            })
+
+            it('Handles ping requests', function() {
+                var stanza = ltx.parse('<iq><ping xmlns="' + ping.NS + '"/></iq>')
+                ping.handles(stanza).should.be.true
+            })
+
+        })
+
+        describe('Handle', function() {
+
         })
     })
 
