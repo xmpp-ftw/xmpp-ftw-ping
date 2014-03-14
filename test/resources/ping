@@ -1,0 +1,3 @@
+<iq from='capulet.lit' to='juliet@capulet.lit/balcony' id='s2c1' type='get'>
+  <ping xmlns='urn:xmpp:ping'/>
+</iq>
