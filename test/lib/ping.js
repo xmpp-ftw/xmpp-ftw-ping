@@ -166,7 +166,7 @@ describe('Pings', function() {
             it('Sends expected data', function(done) {
                 var stanza = helper.getStanza('ping')
                 socket.on('xmpp.ping', function(data) {
-                    data.from.should.equal('capulet.lit')
+                    data.from.should.eql({ domain: 'capulet.lit' })
                     data.id.should.equal('s2c1')
                     done()
                 })
