@@ -29,7 +29,8 @@
     "url": "https://github.com/xmpp-ftw/xmpp-ftw-ping/issues"
   },
   "dependencies": {
-    "xmpp-ftw": "1.x"
+    "xmpp-ftw": "1.x",
+    "ltx": "^0.5.2"
   },
   "devDependencies": {
     "mocha": "~1.8.1",
