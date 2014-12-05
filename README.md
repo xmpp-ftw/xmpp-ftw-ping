@@ -13,6 +13,8 @@ See the XMPP-FTW demo repository - https://github.com/xmpp-ftw/xmpp-ftw-demo
 
 [![Build Status](https://secure.travis-ci.org/xmpp-ftw/xmpp-ftw-ping.png)](http://travis-ci.org/xmpp-ftw/xmpp-ftw-ping)
 
+[![Coverage Status](https://img.shields.io/coveralls/xmpp-ftw/xmpp-ftw-ping.svg)](https://coveralls.io/r/xmpp-ftw/xmpp-ftw-ping)
+
 # Install
 
 ```
@@ -24,6 +26,3 @@ npm i --save xmpp-ftw-ping
 ```
 npm test
 ```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/xmpp-ftw/xmpp-ftw-ping/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
