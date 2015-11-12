@@ -29,7 +29,7 @@
     "url": "https://github.com/xmpp-ftw/xmpp-ftw-ping/issues"
   },
   "dependencies": {
-    "xmpp-ftw": "1.x",
+    "xmpp-ftw": "1.17.0",
     "ltx": "^0.7.2"
   },
   "devDependencies": {
