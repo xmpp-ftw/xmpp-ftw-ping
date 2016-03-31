@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "xmpp-ftw": "1.x",
-    "ltx": "^0.7.2"
+    "ltx": "^2.3.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
