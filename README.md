@@ -1,6 +1,8 @@
 xmpp-ftw-ping
 ===================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/xmpp-ftw/xmpp-ftw-ping.svg)](https://greenkeeper.io/)
+
 XMPP ping (XEP-0199) plugin for XMPP-FTW.
 
 https://github.com/xmpp-ftw/xmpp-ftw.git
